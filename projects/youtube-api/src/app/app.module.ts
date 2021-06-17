@@ -6,6 +6,8 @@ import { ListComponent } from './views/list/list.component';
 import { ListItemComponent } from './views/list-item/list-item.component';
 import { SearchFieldComponent } from './views/search-field/search-field.component';
 import { VideoPageComponent } from './views/video-page/video-page.component';
+import { GetStringDirective } from './get-string.directive';
+import { apiData, YoutubeSearchService } from './youtube-search.service';
 
 @NgModule({
   declarations: [
@@ -13,12 +15,16 @@ import { VideoPageComponent } from './views/video-page/video-page.component';
     ListComponent,
     ListItemComponent,
     SearchFieldComponent,
-    VideoPageComponent
+    VideoPageComponent,
+    GetStringDirective
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    apiData,
+    YoutubeSearchService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
