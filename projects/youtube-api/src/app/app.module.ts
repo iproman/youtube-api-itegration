@@ -8,6 +8,7 @@ import { SearchFieldComponent } from './views/search-field/search-field.componen
 import { VideoPageComponent } from './views/video-page/video-page.component';
 import { GetStringDirective } from './get-string.directive';
 import { apiData, YoutubeSearchService } from './youtube-search.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { apiData, YoutubeSearchService } from './youtube-search.service';
     GetStringDirective
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
   ],
   providers: [
     apiData,
