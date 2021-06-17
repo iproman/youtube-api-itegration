@@ -1,4 +1,8 @@
-import { Injectable, InjectionToken } from '@angular/core';
+import { Inject, Injectable, InjectionToken } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Video } from './Video';
 
 const url = 'https://www.googleapis.com/youtube/v3/search';
 const token = 'AIzaSyBfS5Djh48jA2HGns6nGM0IWk8bY5A0IWo';
@@ -22,5 +26,41 @@ export const apiData = [
 })
 export class YoutubeSearchService {
 
-  constructor() { }
+  constructor(
+    private readonly httpClient: HttpClient,
+    @Inject(injectUrl) private readonly apiUrl: string,
+    @Inject(injectToken) private readonly apiToken: string
+  ) {
+  }
+
+  getData(query: string): Observable<any> {
+    return this.getYoutubeData(query)
+      .pipe(
+        map((data: any) => {
+          return data.items.map((item: any) => {
+            return {
+              id: item.id.videoId,
+              title: item.snippet.title,
+              description: item.snippet.description,
+              imageUrl: item.snippet.thumbnails.high.url
+            } as Video
+          })
+        })
+      );
+  }
+
+  private getYoutubeData(query: string): Observable<any> {
+    const queryParams = [
+      'part=snippet',
+      'maxResults=10',
+      `q=${query}`,
+      'regionCode=ru',
+      'type=video',
+      `key=${this.apiToken}`
+    ];
+
+    const urlData = `${this.apiUrl}?${queryParams.join('&')}`
+
+    return this.httpClient.get(urlData);
+  }
 }
