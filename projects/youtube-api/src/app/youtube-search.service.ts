@@ -33,7 +33,7 @@ export class YoutubeSearchService {
   ) {
   }
 
-  getData(query: string): Observable<any> {
+  getData(query: string): Observable<Video[]> {
     return this.getYoutubeData(query)
       .pipe(
         map((data: any) => {
