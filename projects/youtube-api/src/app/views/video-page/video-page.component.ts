@@ -4,9 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-video-page',
   template: `
-    <p>
-      video-page works!
-    </p>
+    <youtube-player
+    [videoId]="id"
+    ></youtube-player>
   `,
   styles: [
   ]
