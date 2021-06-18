@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { YoutubeSearchService } from './youtube-search.service';
+import { Observable } from 'rxjs';
+import { Video } from './Video';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +10,9 @@ import { YoutubeSearchService } from './youtube-search.service';
 })
 export class AppComponent {
 
+  // @ts-ignore
+  data$: Observable<Video[]>
+
   constructor(
     private readonly youtubeSearchService: YoutubeSearchService
   ) {
@@ -15,8 +20,6 @@ export class AppComponent {
 
 
   getData(str: string): void {
-    this.youtubeSearchService.getData(str).subscribe(c => {
-      console.log(c);
-    });
+    this.data$ = this.youtubeSearchService.getData(str);
   }
 }
