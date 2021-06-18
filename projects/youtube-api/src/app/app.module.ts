@@ -9,6 +9,21 @@ import { VideoPageComponent } from './views/video-page/video-page.component';
 import { GetStringDirective } from './get-string.directive';
 import { apiData, YoutubeSearchService } from './youtube-search.service';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+import { HomePageComponent } from './views/home-page/home-page.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
+
+const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: HomePageComponent
+  },
+  {
+    path: 'video/:id',
+    component: VideoPageComponent
+  }
+]
 
 @NgModule({
   declarations: [
@@ -17,11 +32,14 @@ import { HttpClientModule } from '@angular/common/http';
     ListItemComponent,
     SearchFieldComponent,
     VideoPageComponent,
-    GetStringDirective
+    GetStringDirective,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    RouterModule.forRoot(routes),
+    YouTubePlayerModule,
   ],
   providers: [
     apiData,
@@ -29,4 +47,5 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
