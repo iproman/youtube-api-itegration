@@ -7,20 +7,20 @@ import { Video } from '../../Video';
     <div class="card">
       <img class="card-img-top" [src]="video.imageUrl" alt="Card image cap">
       <div class="card-body">
-        <a class="card-title" href="#" >{{video.title}}</a>
+        <a class="card-title" [routerLink]="['/video', video.id]">{{video.title}}</a>
         <p class="card-text">{{video.description}}</p>
       </div>
     </div>
   `,
-  styles: [
-  ]
+  styles: []
 })
 export class ListItemComponent implements OnInit {
 
   // @ts-ignore
   @Input() video: Video;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
