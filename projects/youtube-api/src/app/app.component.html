@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col">
       <app-search-field (query)="getData($event)"></app-search-field>
-      <app-list></app-list>
+      <app-list [data$]="data$"></app-list>
     </div>
   </div>
 </div>
