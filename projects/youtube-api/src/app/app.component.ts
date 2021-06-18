@@ -10,16 +10,5 @@ import { Video } from './Video';
 })
 export class AppComponent {
 
-  // @ts-ignore
-  data$: Observable<Video[]>
 
-  constructor(
-    private readonly youtubeSearchService: YoutubeSearchService
-  ) {
-  }
-
-
-  getData(str: string): void {
-    this.data$ = this.youtubeSearchService.getData(str);
-  }
 }
